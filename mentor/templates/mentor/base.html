@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+    <title>{% block title %}{% endblock title %}</title>
+
+    <meta content="" name="description" />
+    <meta content="" name="keywords" />
+
+    {% load static %}
+    <!-- Favicons -->
+    <link href="{% static 'mentor/img/favicon.png' %}" rel="icon" />
+    <link
+      href="{% static 'mentor/img/apple-touch-icon.png' %}"
+      rel="apple-touch-icon"
+    />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+      rel="stylesheet"
+    />
+    <!-- Vendor CSS Files -->
+    <link
+      href="{% static 'mentor/vendor/animate.css/animate.min.css' %}"
+      rel="stylesheet"
+    />
+    <link href="{% static 'mentor/vendor/aos/aos.css' %}" rel="stylesheet" />
+    <link
+      href="{% static 'mentor/vendor/bootstrap/css/bootstrap.min.css' %}"
+      rel="stylesheet"
+    />
+    <link
+      href="{% static 'mentor/vendor/bootstrap-icons/bootstrap-icons.css' %}"
+      rel="stylesheet"
+    />
+    <link
+      href="{% static 'mentor/vendor/boxicons/css/boxicons.min.css' %}"
+      rel="stylesheet"
+    />
+    <link
+      href="{% static 'mentor/vendor/remixicon/remixicon.css' %}"
+      rel="stylesheet"
+    />
+    <link
+      href="{% static 'mentor/vendor/swiper/swiper-bundle.min.css' %}"
+      rel="stylesheet"
+    />
+    <!-- Template Main CSS File -->
+    <link href="{% static 'mentor/css/style.css' %}" rel="stylesheet" />
+  </head>
+
+  <body>
+    {% include 'mentor/header.html' %}
+
+    <main id="main">
+
+      {% if request.resolver_match.url_name != 'index' %}
+      <!-- ======= Breadcrumbs ======= -->
+      <div class="breadcrumbs" data-aos="fade-in">
+        <div class="container">
+          {% block breadcrumbs %}{% endblock breadcrumbs %}
+        </div>
+      </div>
+      <!-- End Breadcrumbs -->
+      {% endif %}
+      
+      {% block content %} {% endblock content %}
+    </main>
+
+    {% include 'mentor/footer.html' %}
+  </body>
+</html>
