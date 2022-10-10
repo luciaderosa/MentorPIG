@@ -25,7 +25,7 @@
               </div>
               <div class="card-body">
                 <h5 class="card-title"><a href="">{{ event.title }}</a></h5>
-                <p class="fst-italic text-center">{{ event.date|date:"l, F d\t\h\ \a\ŧ\ H:i a" }}</p>
+                <p class="fst-italic text-center">{{ event.date|date:"l, F dS"}} at {{event.date|time:"P"}}</p>
                 <p class="card-text">{{ event.text }}</p>
               </div>
             </div>                        
