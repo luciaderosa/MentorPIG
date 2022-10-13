@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from mentordata.models import Event
+from mentordata.models import Event, Testimonial, Trainer
 
 
 # Create your views here.
@@ -14,7 +14,8 @@ def contact(request):
 
 
 def about(request):
-    return render(request, 'mentor/about.html')
+    testimonials = Testimonial.objects.all()
+    return render(request, 'mentor/about.html', {'testimonials': testimonials})
 
 
 def courses(request):
@@ -22,7 +23,8 @@ def courses(request):
 
 
 def trainers(request):
-    return render(request, 'mentor/trainers.html')
+    trainers = Trainer.objects.all()
+    return render(request, 'mentor/trainers.html', {'trainers': trainers})
 
 
 def events(request):
