@@ -7,19 +7,14 @@ class Event(models.Model):
     # help_text="texto..." — proporciona una etiqueta de texto para mostrar que ayuda.
 
     title = models.CharField(max_length=100, help_text="Título del evento")
-        # Cadena para representar el objeto MyModelName (en el sitio de Admin, etc.)
     text = models.TextField(help_text="Resumen del evento")
     date = models.DateTimeField(help_text="Fecha y hora del evento")
     image = models.ImageField(upload_to="projects")
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
-    # Metadata
     class Meta:
-        # para que el evento más nuevo quedo primero
         ordering = ["-date"]
-
-    # Métodos
 
     def __str__(self):
         # Cadena para representar el objeto MyModelName (en el sitio de Admin, etc.)
@@ -56,6 +51,40 @@ class Testimonial(models.Model):
     class Meta:
         # el orden de ingreso? la fecha de creación? del más viejo al más nuevo?
         ordering = ["created"]
+
+    def __str__(self):
+        return self.name
+
+
+class Course(models.Model):
+
+    name = models.CharField(max_length=100, help_text="Nombre del curso")
+    category = models.ForeignKey('Category', on_delete=models.DO_NOTHING)
+    # category = models.ForeignKey('Category', models.SET_NULL, blank=True, null=True,)
+    brief = models.TextField(help_text="Presentación del curso")
+    text = models.TextField(help_text="Detalle del curso")
+    fee = models.DecimalField(max_digits=6, decimal_places=2)
+    image = models.ImageField(upload_to="projects")
+    seats = models.IntegerField(help_text="Cantidad de plazas")
+    schedule = models.CharField(
+        max_length=100, help_text="Días y horarios curso")
+    trainer = models.ForeignKey(Trainer, on_delete=models.DO_NOTHING)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ["name"]
+
+    def __str__(self):
+        return self.name
+
+
+class Category(models.Model):
+    name = models.CharField(max_length=100, help_text="Categoría de Cursos")
+    description = models.TextField(help_text="Descripción de la categoría")
+
+    class Meta:
+        ordering = ["name"]
 
     def __str__(self):
         return self.name
