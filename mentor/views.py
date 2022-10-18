@@ -6,7 +6,13 @@ from mentordata.models import Event, Testimonial, Trainer, Course
 
 
 def index(request):
-    return render(request, 'mentor/index.html')
+    trainers = Trainer.objects.all()
+    courses = Course.objects.all()
+    context = {
+        'trainers': trainers,
+        'courses': courses
+    }
+    return render(request, 'mentor/index.html', {'context': context})
 
 
 def contact(request):
@@ -33,5 +39,6 @@ def events(request):
     return render(request, 'mentor/events.html', {'events': events})
 
 
-def course_detail(request):
-    return render(request, 'mentor/course-details.html')
+def course_detail(request, course_id):
+    course = Course.objects.get(pk=course_id)
+    return render(request, 'mentor/course-details.html', {'course': course})

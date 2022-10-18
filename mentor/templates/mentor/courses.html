@@ -27,7 +27,7 @@
                   <p class="price">${{ course.fee }}</p>
                 </div>
 
-                <h3><a href="{% url 'course-detail' %}">{{ course.name }}</a></h3>
+                <h3><a href="{% url 'course-detail' course.id %}">{{ course.name }}</a></h3>
                 <p>{{ course.brief }}</p>
                 <div class="trainer d-flex justify-content-between align-items-center">
                   <div class="trainer-profile d-flex align-items-center">                    
